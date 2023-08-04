@@ -1,32 +1,29 @@
-setInterval(() => {
-    // Récupérer toutes les aiguilles et définir le dégré de rotation de l'aiguille des secondes
-    const deg_r = 6;
-    const hr = document.querySelector('#hr');
-    const mn = document.querySelector('#mn');
-    const sc = document.querySelector('#sc');
+// Retrieve all the hands and define the degree of rotation of the seconds hand
+const deg_r = 6;
+const hr = document.querySelector('#hr');
+const mn = document.querySelector('#mn');
+const sc = document.querySelector('#sc');
 
-    // Récupération de l'heure actuelle et conversion pour une adaptation à l'horloge analogique
+setInterval(() => {
+    // Recovery of the current time and conversion for adaptation to the analogue clock
     let day = new Date();
     let hh = day.getHours() * 30;
-    // car 360/12h = 30 et que getHours renvoie l'heure dans un format 24h
+    // because 360/12h = 30 and getHours returns the time in 24-hour format
     let mm = day.getMinutes() * deg_r;
     let ss = day.getSeconds() * deg_r;
 
-    // Rotation des aiguilles
+    // Rotation of the hands
     hr.style.transform = `rotateZ(${(hh) + (mm / 12)}deg)`;
-    // le $ car l'angle de rotation içi est une variable
+    // the $ because the angle of rotation here is a variable
     mn.style.transform = `rotateZ(${mm}deg)`;
     sc.style.transform = `rotateZ(${ss}deg)`;
 }, 1000);
 
 
-// Changement de thème
-var light_dark = document.querySelector('.mode_d');
-var bg = document.querySelector('body');
-var clock = document.querySelector('.clock');
-var mn = document.querySelector('.mn');
-var sc = document.querySelector('.sc');
-
+// Change of theme
+const light_dark = document.querySelector('.mode_d');
+const bg = document.querySelector('body');
+const clock = document.querySelector('.clock');
 
 light_dark.addEventListener('click', () => {
     if (mn.classList.contains('mn_l')) {
